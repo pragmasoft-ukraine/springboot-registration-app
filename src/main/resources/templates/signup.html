@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/head"/>
+</head>
+<body>
+
+<th:block th:include="fragments/header"/>
+
+<div class="py-5">
+    <div class="container">
+        <div class="display-4 mb-3 text-center">Sign up</div>
+        <div class="row justify-content-center align-items-center text-center">
+            <div class="col-md-6">
+                <div class="card card-body">
+                    <form action="/api/v1/signup" method="POST" id="registration-form">
+                        <div class="form-group">
+                            <input class='form-control form-control-lg' id="username" type="text" placeholder="Username"
+                                   name="username">
+                            <div class="invalid-feedback">Username is invalid</div>
+                        </div>
+                        <div class="form-group">
+                            <input class='form-control form-control-lg' id="password" type="password"
+                                   placeholder="Password" name="password">
+                            <div class="invalid-feedback">Password is invalid</div>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control form-control-lg" id="country-select" name="country">
+                                <option value="usa" selected>USA</option>
+                                <option value="canada">Canada</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="usa-select-block">
+                            <select class="form-control form-control-lg" name="state" th:each="state : ${states}">
+                                <option th:value="${state.id}" th:text="${state.name}"></option>
+                            </select>
+                        </div>
+                        <div id="canada-select-block" hidden>
+                            <div class="form-group">
+                                <input class='form-control form-control-lg' id="province" type="text"
+                                       placeholder="Province" name="province">
+                            </div>
+                            <div class="form-group">
+                                <input class='form-control form-control-lg' id="city" type="text"
+                                       placeholder="City" name="city">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fa fa-user-plus" aria-hidden="true"></i> Sign up
+                        </button>
+                    </form>
+                    <hr>
+                    <p>Already registered? <a href="signin">Sign in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="fragments/footer"/>
+
+<script src="/js/myJS.js"></script>
+
+</body>
+</html>

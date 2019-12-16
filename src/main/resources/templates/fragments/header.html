@@ -1,0 +1,36 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container d-flex justify-content-between">
+            <a class="navbar-brand" href="/">Test App</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbar1"></button>
+            <div class="collapse navbar-collapse" id="navbar1">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"><a class="nav-link" href="/">Home page</a>
+                </ul>
+                <div th:if="${session.user == null}" class="btn-group mx-1">
+                    <a href="signin" class="btn btn-primary"><i
+                            class="fa fa-sign-in" aria-hidden="true"></i>
+                        Sign in
+                    </a>
+                </div>
+                <div th:if="${session.user != null}" th:remove="tag">
+                    <div class="btn-group mr-2">
+                        <a href="me" class="btn btn-light">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            Hello, <p th:text="${session.user.username}" th:remove="tag"></p>
+                        </a>
+                    </div>
+                    <form action="/api/v1/signout" method="POST">
+                        <div class="btn-group">
+                            <button class="btn btn-danger">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

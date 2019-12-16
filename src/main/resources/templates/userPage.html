@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/head"/>
+</head>
+<body>
+
+<th:block th:include="fragments/header"/>
+
+<div class="py-5">
+    <div class="container">
+        <div class="display-4 mb-3 text-center">Update user</div>
+        <div class="row justify-content-center align-items-center text-center">
+            <div class="col-md-6">
+                <div class="card card-body">
+                    <form action="/api/v1/user" method="POST" id="update-user-form">
+                        <div class="form-group">
+                            <input class='form-control form-control-lg' id="username" type="text" placeholder="Username"
+                                   name="username" th:value="${session.user.username}">
+                            <div class="invalid-feedback">Username is invalid</div>
+                        </div>
+                        <div class="form-group">
+                            <input class='form-control form-control-lg' id="password" type="password"
+                                   placeholder="Password" name="password">
+                            <div class="invalid-feedback">Password is invalid</div>
+                        </div>
+                        <div th:if="${session.user instanceof T(com.oliinyk.registration.model.UsaUser)}" class="form-group" id="usa-select-block">
+                            <select class="form-control form-control-lg" name="state" th:each="state : ${states}">
+                                <option th:value="${state.id}" th:text="${state.name}" th:selected="${session.user.state = state}"></option>
+                            </select>
+                        </div>
+                        <div th:if="${session.user instanceof T(com.oliinyk.registration.model.CanadaUser)}" id="canada-select-block">
+                            <div class="form-group">
+                                <input class='form-control form-control-lg' id="province" type="text"
+                                       placeholder="Province" name="province" th:value="${session.user.province}">
+                            </div>
+                            <div class="form-group">
+                                <input class='form-control form-control-lg' id="city" type="text"
+                                       placeholder="City" name="city" th:value="${session.user.province}">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            Update user
+                        </button>
+                    </form>
+                    <hr>
+                    <p>Already registered? <a href="signin">Sign in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="fragments/footer"/>
+
+<script src="/js/submitForm.js"></script>
+
+</body>
+</html>

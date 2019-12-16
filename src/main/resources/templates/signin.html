@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/head"/>
+</head>
+<body>
+
+<th:block th:include="fragments/header"/>
+
+<div class="py-5">
+    <div class="container">
+        <div class="display-4 mb-3 text-center">Sign in</div>
+        <div class="row justify-content-center align-items-center text-center">
+            <div class="col-md-4">
+                <div class="card card-body">
+                    <form action="/api/v1/signin" method="POST">
+                        <div class="form-group">
+                            <input class="form-control form-control-lg" type="text" placeholder="Username"
+                                   name="username">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control form-control-lg" type="password" placeholder="Password"
+                                   name="password">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i> Sign in
+                        </button>
+                    </form>
+                    <hr>
+                    <p>
+                        Not registered? <a href="signup">Sing up</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="fragments/footer"/>
+
+</body>
+</html>
